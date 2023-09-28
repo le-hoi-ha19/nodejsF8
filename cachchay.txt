@@ -1,0 +1,19 @@
+*đầu tiên vào trong file index.js thì có route(app) app là đường dẫn
+sau đó vào file index.js trong routes
+-có 2 TH:
+    + th1: đường dẫn là /news chaỵ vaò-->routes/news.js: 
+    .mặc định nó chạy vào endpoint / và gọi phương thức index trong file NewsControllers.js
+    .còn nếu có đuôi thì nó chạy vào endpoints /:slug và gọi phương show trong newsControllers.js
+    +th2: đường dẫn là / chạy vào -->routes/sites.js:
+    . mặc định nó chạy vào endpoint / và gọi phương thức index trong file SitesController.js
+    . còn nếu nó có đuôi search thì chạy vào endpoint /search và gọi phương search trong file controller.js
+
+
+*Lý do bạn phải sử dụng hàm mutipleMongooseToObject là để chuyển đổi dữ liệu từ đối tượng Mongoose (mongoose document) thành dạng
+đối tượng thường (plain JavaScript object) trước khi truyền vào giao diện. Mongoose thường trả về các đối tượng đặc biệt 
+có phương thức và thuộc tính riêng của nó, và không phải tất cả các template engine hoặc thư viện giao diện hỗ trợ trực tiếp 
+các đối tượng này. Do đó, bạn cần chuyển đổi chúng thành dạng đối tượng JavaScript thường để dễ dàng sử dụng trong giao diện.
+
+*
+-middleware: là phần đứng giữa  client và server (nghiêng về phía server hơn)
+-tác dụng của middleware:kiểm tra dữ liệu gửi lên(thỏa mãn)--> cho phép vào(server)--> có thể chỉnh sửa/thay đổi dữ liệu gửi về

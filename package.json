@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Tungsan007/blog_nodejs.git"
+    "url": "git+https://github.com/le-hoi-ha19/nodejsF8.git"
   },
   "keywords": [
     "blog",
@@ -19,12 +19,20 @@
   "author": "sannguyen",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Tungsan007/blog_nodejs/issues"
+    "url": "https://github.com/le-hoi-ha19/nodejsF8.git"
   },
-  "homepage": "https://github.com/Tungsan007/blog_nodejs#readme",
+  "homepage": "https://github.com/le-hoi-ha19/nodejsF8.git",
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "express": "^4.18.2",
-    "express-handlebars": "^7.0.7"
+    "express-handlebars": "^7.0.7",
+    "jsonwebtoken": "^9.0.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^7.3.1",
+    "mongoose-delete": "^1.0.1",
+    "mongoose-slug-generator": "^1.0.4",
+    "mongoose-slug-updater": "^3.3.0",
+    "passport-google-plus-token": "^2.1.0"
   },
   "devDependencies": {
     "morgan": "^1.10.0",
