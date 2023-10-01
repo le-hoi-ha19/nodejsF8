@@ -1,4 +1,3 @@
-const jwt = require('jsonwebtoken');
 const Account = require("../models/Account");
 module.exports = function CheckTeacherMiddleware(req,res,next){
 

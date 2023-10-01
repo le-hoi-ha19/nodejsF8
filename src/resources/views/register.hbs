@@ -1,0 +1,35 @@
+<script>
+  
+    function Register() {
+        $.ajax({
+            url: '/register',
+            type: 'POST',
+            data: {
+                username: $("#username").val(),
+                password: $("#password").val()
+            }
+        })
+        .then(data => {
+           if( data.success)
+           {
+            window.location.href = '/login';
+           }else if(!data.success)
+           {
+            alert(data.message)
+           }
+        })
+        .catch(error => {
+            console.error('Lỗi:', error);
+            alert(error)
+        });
+    }
+</script>
+
+
+<div>
+    <h5>đăng ký tài khoản</h5>
+    <input type="text" placeholder="Tài khoản" id="username">
+    <div></div>
+    <input type="password" placeholder="Mật khẩu" id="password">
+    <button onclick="Register()">register</button>
+</div>

@@ -31,7 +31,10 @@ app.use(methodOverride("_method"));
 
 // custome middleware
 app.use(SortMiddleware);
-app.use('/product',CheckLoginMiddleware,CheckManagerMiddleware)
+app.use('/product',CheckLoginMiddleware,CheckTeacherMiddleware)
+app.use('/courses/create',CheckLoginMiddleware,CheckTeacherMiddleware)
+app.use('/me/trash/courses',CheckLoginMiddleware,CheckTeacherMiddleware)
+app.use('/me/stored/courses',CheckLoginMiddleware,CheckTeacherMiddleware)
 
 app.engine(
   ".hbs",
