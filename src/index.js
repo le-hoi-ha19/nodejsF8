@@ -4,6 +4,9 @@ const morgan = require("morgan");
 const methodOverride = require("method-override");
 const { engine } = require("express-handlebars");
 const cookieParser = require("cookie-parser");
+const session = require('express-session');
+const passport = require('passport');
+
 
 
 const SortMiddleware = require('./app/middlewares/SortMiddleware');
@@ -22,6 +25,29 @@ db.connect();
 
 const app = express();
 const port = 3000;
+
+// cấu hình lại session để dùng
+app.use(
+  session({
+    resave: false,
+    saveUninitialized: true,
+    secret: process.env.SESSION_SECRET,
+  })
+);
+// để khởi tạo Passport, thường được đặt trước mọi tuyến đường trong ứng dụng.
+app.use(passport.initialize());
+// để duy trì trạng thái xác thực của người dùng qua các yêu cầu
+app.use(passport.session());
+// lưu thông tin xác thực của người dùng vào session
+passport.serializeUser(function (user, cb) {
+  cb(null, user);
+});
+// lấy thông tin xác thực của người dùng từ session và biến nó thành một đối tượng 
+passport.deserializeUser(function (obj, cb) {
+  cb(null, obj);
+});
+
+
 
 app.use(cookieParser())
 // app.use(morgan('combined'));

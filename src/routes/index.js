@@ -6,6 +6,7 @@ const testRouter = require('./test');
 const loginRouter = require('./login');
 const registerRouter = require('./register');
 const productsRouter = require('./product');
+const googleRouter = require('./google');
 function route(app) {
    app.use('/login', loginRouter)
    app.use('/register', registerRouter)
@@ -15,6 +16,7 @@ function route(app) {
    app.use('/me', meRouter);
    app.use('/', siteRouter);
    app.use('/product', productsRouter);
+   app.use('/auth/google', googleRouter);
 
 }
 
