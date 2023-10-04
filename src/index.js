@@ -40,10 +40,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 // lưu thông tin xác thực của người dùng vào session
 passport.serializeUser(function (user, cb) {
+  // (chạy cái này thứ 4)
   cb(null, user);
+  
 });
-// lấy thông tin xác thực của người dùng từ session và biến nó thành một đối tượng 
+// lấy thông tin xác thực của người dùng từ session khi có yêu cầu được gửi đến server
 passport.deserializeUser(function (obj, cb) {
+  // (chạy cái này thứ 5)
   cb(null, obj);
 });
 
@@ -61,6 +64,7 @@ app.use('/product',CheckLoginMiddleware,CheckTeacherMiddleware)
 app.use('/courses/create',CheckLoginMiddleware,CheckTeacherMiddleware)
 app.use('/me/trash/courses',CheckLoginMiddleware,CheckTeacherMiddleware)
 app.use('/me/stored/courses',CheckLoginMiddleware,CheckTeacherMiddleware)
+app.use('/courses/:slug',CheckLoginMiddleware,CheckStudentMiddleware)
 
 app.engine(
   ".hbs",

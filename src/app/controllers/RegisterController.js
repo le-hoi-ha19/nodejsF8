@@ -1,20 +1,24 @@
-const Account = require("../models/Account");
+const User = require('../models/User');
 
 class RegisterController {
   index(req, res, next) {
-    var username = req.body.username;
-    var password = req.body.password;
-
-    async function RegisterUser(username,password) {
+    // var phonenumber = req.body.phonenumber;
+    // var password = req.body.password;
+    const{phonenumber, password} = req.body;
+    
+    async function RegisterUser(phonenumber,password) {
       try {
-        const data = await Account.findOne({ username: username });
+        const data = await User.findOne({ phonenumber: phonenumber });
         if (data) {
           res.json({
             message: 'Người dùng này đã tồn tại',
             success: false
           })
         } else {
-          Account.create({ username: username, password: password,role: "student" });
+          // thay user.create bằng new User để hỗ trợ bcrypt
+          // User.create({ phonenumber: phonenumber, password: password });
+          const user = new User({phonenumber, password});
+          const savedUser = await user.save()
           res.json({
             message: 'Tạo tài khoản thành công',
             success: true
@@ -24,7 +28,7 @@ class RegisterController {
         res.status(500);
       }
     }
-    RegisterUser(username,password)
+    RegisterUser(phonenumber,password)
   }
   show(req, res, next)
   {

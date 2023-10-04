@@ -1,4 +1,4 @@
-const Account = require("../models/Account");
+const User = require('../models/User');
 // dùng json web token
 const jwt = require('jsonwebtoken');
 
@@ -6,16 +6,16 @@ const jwt = require('jsonwebtoken');
 
 class LoginController {
   index(req, res, next) {
-    var username = req.body.username;
-    var password = req.body.password;
+    // var phonenumber = req.body.phonenumber;
+    // var password = req.body.password;
+    const{phonenumber, password} = req.body;
 
-    async function LoginUser(username, password) {
+    async function LoginUser(phonenumber, password) {
       try {
-        const data = await Account.findOne({
-          username: username,
+        const data = await User.findOne({
+          phonenumber: phonenumber,
           password: password,
         });
-
         if (data) {
           var token = jwt.sign({
             _id:data._id
@@ -32,7 +32,7 @@ class LoginController {
         res.status(500).json("đăng nhập thất bại");
       }
     }
-    LoginUser(username, password);
+    LoginUser(phonenumber, password);
   }
   inputLogin(req, res, next) {
     res.render("login")

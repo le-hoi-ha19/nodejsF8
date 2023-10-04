@@ -1,4 +1,3 @@
-const Account = require("../models/Account");
 
 module.exports = function CheckStudentMiddleware(req,res,next){
 

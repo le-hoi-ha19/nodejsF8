@@ -5,7 +5,7 @@
             url: '/register',
             type: 'POST',
             data: {
-                username: $("#username").val(),
+                phonenumber: $("#phonenumber").val(),
                 password: $("#password").val()
             }
         })
@@ -23,13 +23,65 @@
             alert(error)
         });
     }
+  function validatePhone() {
+    var messagephone = document.getElementById('messagephonenumber');
+    var phonenumber = document.getElementById('phonenumber').value;
+
+    if (phonenumber.length === 10 && phonenumber.slice(0, 1) === '0') {
+        messagephone.textContent = "";
+        return true;
+    } else {
+        messagephone.textContent = "Số điện thoại không hợp lệ";
+        return false;
+    }
+}
+function validatePassword() {
+    var messagepassword = document.getElementById('messagepassword');
+    var password = document.getElementById('password').value; 
+
+    // Kiểm tra chiều dài mật khẩu
+    if (password.length < 10) {
+        messagepassword.textContent = "Mật khẩu phải có ít nhất 10 ký tự";
+        return false;
+    }
+
+    // Kiểm tra chứa ít nhất 1 chữ cái
+    var letterRegex = /[A-Za-z]/;
+    if (!letterRegex.test(password)) {
+        messagepassword.textContent = "Mật khẩu phải chứa ít nhất 1 chữ cái";
+        return false;
+    }
+
+    // Kiểm tra chứa ít nhất 1 số
+    var numberRegex = /\d/;
+    if (!numberRegex.test(password)) {
+        messagepassword.textContent = "Mật khẩu phải chứa ít nhất 1 số";
+        return false;
+    }
+
+    // Kiểm tra chứa ít nhất 1 ký tự đặc biệt
+    var specialCharRegex = /[@$!%*?&]/;
+    if (!specialCharRegex.test(password)) {
+        messagepassword.textContent = "Mật khẩu phải chứa ít nhất 1 ký tự đặc biệt";
+        return false;
+    }
+
+    // Nếu mật khẩu đáp ứng tất cả các yêu cầu
+    messagepassword.textContent = "";
+    return true;
+}
+
+
+
 </script>
 
 
 <div>
     <h5>đăng ký tài khoản</h5>
-    <input type="text" placeholder="Tài khoản" id="username">
+    <input class="mb-5" type="text" placeholder="Số điện thoại" id="phonenumber" onblur="validatePhone()">
+    <span id="messagephonenumber"></span>
     <div></div>
-    <input type="password" placeholder="Mật khẩu" id="password">
+    <input class="mb-5" type="password" placeholder="Mật khẩu" id="password" onblur="validatePassword()">
+    <span id="messagepassword"></span>
     <button onclick="Register()">register</button>
 </div>

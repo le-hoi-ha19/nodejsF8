@@ -1,4 +1,3 @@
-const Account = require("../models/Account");
 module.exports = function CheckTeacherMiddleware(req,res,next){
 
     var role= req.data.role
